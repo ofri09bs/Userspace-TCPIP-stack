@@ -1,8 +1,10 @@
 #include <string.h>
 #include <stdio.h>
+#include <arpa/inet.h>
+#include <unistd.h>
 #include "protocol.h"
 
-#define MY_MAC {0x02, 0x00, 0x00, 0x00, 0x00, 0x01} // Example MAC address
+#define MY_MAC {{0x02, 0x00, 0x00, 0x00, 0x00, 0x01}} // Example MAC address
 
 void send_arp_reply(int tap_fd, ethernet_header *eth_hdr) {
 

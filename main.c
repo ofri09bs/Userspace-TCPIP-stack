@@ -9,7 +9,7 @@
 #include <linux/if_tun.h>
 #include <arpa/inet.h>
 #include "protocol.h"
-#include "arp.c"
+#include "arp.h"
 
 #define BUFFER_SIZE 2048
 
