@@ -7,9 +7,16 @@
 #define ETH_P_IP    0x0800 
 #define ETH_P_ARP   0x0806 
 
+// IP Protocol numbers
+#define IP_PROTO_ICMP 1
+
 // ARP operation codes
 #define ARP_OP_REQUEST 1
 #define ARP_OP_REPLY   2
+
+// ICMP message types
+#define ICMP_ECHO_REQUEST 8
+#define ICMP_ECHO_REPLY   0
 
 // MAC address structure (ethernet address)
 typedef struct {

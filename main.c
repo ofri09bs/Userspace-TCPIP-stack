@@ -10,6 +10,7 @@
 #include <arpa/inet.h>
 #include "protocol.h"
 #include "arp.h"
+#include "icmp.h"
 
 #define BUFFER_SIZE 2048
 
@@ -87,7 +88,14 @@ int main() {
             ip_header *ip_hdr = (ip_header *)(buffer + sizeof(ethernet_header));
             int protocol = ip_hdr->protocol;
             printf("IP packet received, Protocol: %d\n", protocol);
-            // Further processing for IP packets can be added here
+            if (protocol == IP_PROTO_ICMP) {
+                icmp_header *icmp_hdr = (icmp_header *)((char *)ip_hdr + sizeof(ip_header));
+                if (icmp_hdr->type == ICMP_ECHO_REQUEST) {
+                    printf("ICMP Echo Request received\n");
+                    send_icmp_reply(tap_fd, eth_hdr);
+                    printf("Sent ICMP Echo Reply\n");
+                }
+            }
         }
     }
 
